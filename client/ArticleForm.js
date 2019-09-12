@@ -1,30 +1,34 @@
 import React from 'react';
-import { Label, Form, Input, Button, Radio, Checkbox, Messages, Container, Divider, Dropdown, Header, Segment, Group, Table, Flag} from 'semantic-ui-react'
+import { Label, Form, Input, Button, Radio, Checkbox, Messages, Container, Divider, Dropdown, Header, Segment, Group, Table, Flag } from 'semantic-ui-react'
 import { Articles } from '../imports/Article';
 
 export default class ArticleForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        ptc:false, 
-        thematic_focus:'',
-        topic:'',
-        location:'',
-        content:'',
-        regref:'',
-        genre:'',
-        keywords:'',
-        event_time:'',
-        topstory:false,
-        lifetime:'',
-        prio:'',
-        date_published:'',
-        lang:'',
-        date_created:'',       
-        title: '',
-        desc: '',
-        author: '',
-         };
+            ptc: false,
+            thematic_focus: '',
+            topic: '',
+            location: '',
+            content: '',
+            regref: '',
+            genre: '',
+            keywords: '',
+            event_time: '',
+            topstory: false,
+            lifetime: '',
+            prio: '',
+            date_published: '',
+            lang: '',
+            date_created: '',
+            title: '',
+            desc: '',
+            author: '',
+            likes: '0',
+            _id:'',
+            id:'',
+            value: ''
+        };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -33,14 +37,11 @@ export default class ArticleForm extends React.Component {
 
     }
 
-      handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
 
-  }
-
-
-
+    }
 
     handleChange(event, type) {
         let s = {};
@@ -50,7 +51,7 @@ export default class ArticleForm extends React.Component {
 
     handleSubmit(event) {
         Articles.insert({
-            ptc:this.state.ptc, 
+            ptc: this.state.ptc,
             thematic_focus: this.state.thematic_focus,
             topic: this.state.topic,
             location: this.state.location,
@@ -69,7 +70,10 @@ export default class ArticleForm extends React.Component {
             desc: this.state.desc,
             author: this.state.author,
             dateCreated: "15.09.2019",
-
+            likes: this.state.likes,
+            _id: this.state._id,
+            id: this.state.id,
+            value: this.state.value
         });
 
         console.log('A title was submitted: ' + this.state.title);
@@ -81,15 +85,19 @@ export default class ArticleForm extends React.Component {
 
 
     handleDelete(event) {
-        Articles.splice(article, 0);
-        this.setState(s)
+        // Articles.splice(article, 0);
+        // this.setState({deleteArray: articles});
+        this.props.articles.splice(this.props.key, 1);
+        this.setState({
+            deleteArray: articles
+        });
     }
 
 
 
     render() {
         return (
-       <Form>
+            <Form>
         <Form.Field>
           <label>Title:</label>
           <input placeholder='title' value={this.state.title} onChange={(event) => {this.handleChange(event, "title")}} />
@@ -126,78 +134,78 @@ export default class ArticleForm extends React.Component {
 
 
    <div class="ui form">
-  	<div class="inline fields">
+    <div class="inline fields">
        <label>Priority:</label>
 
-       	<div class="field">
-    		<div class="ui radio checkbox">
-    		
-          	<input
+        <div class="field">
+        <div class="ui radio checkbox">
+        
+            <input
             type= "checkbox"
             label='Breaking'
             value="breaking"
             checked={this.state.checked}
             onChange={this.handleInputChange}
-          	/>
-          	<label>Breaking</label>
-         	</div>
-    	</div>
+            />
+            <label>Breaking</label>
+          </div>
+      </div>
 
         <div class="field">
-      		<div class="ui radio checkbox">
-          	          
-          	<input
+          <div class="ui radio checkbox">
+                      
+            <input
             type= "checkbox"
             label='Exclusive'
             value="exclusive"
             checked={this.state.checked}
             onChange={this.handleInputChange}
-          	/>
-          	<label>Exclusive</label>
-          	</div>
-    	</div>
+            />
+            <label>Exclusive</label>
+            </div>
+      </div>
 
         <div class="field">
-      		<div class="ui radio checkbox">
-          	
-           	<input
+          <div class="ui radio checkbox">
+            
+            <input
             type= "checkbox"
             label='High'
             value="high"
             checked={this.state.checked}
             onChange={this.handleInputChange}
-          	/>
-          	<label>High</label>
-          	</div>
-    	</div>
+            />
+            <label>High</label>
+            </div>
+      </div>
 
-		<div class="field">
-      		<div class="ui radio checkbox">
-			
-           	<input
+    <div class="field">
+          <div class="ui radio checkbox">
+      
+            <input
             type= "checkbox"
             label='Neutral'
             value="Neutral"
             checked={this.state.checked}
             onChange={this.handleInputChange}
-          	/>
-          	<label>Neutral</label>
-           	</div>
-    	</div>
-    		  	  	<div class="ui left pointing red basic label">
-      					Mandatory!
-    				</div>
-    	</div>
-	</div>
+            />
+            <label>Neutral</label>
+            </div>
+      </div>
+                <div class="ui left pointing red basic label">
+                Mandatory!
+            </div>
+      </div>
+  </div>
 
 
 
-  	<div class="ui form">
- 		<div class="inline fields">
-    	 <label>Lifetime:</label>
-    	<div class="field">
-      	<div class="ui radio checkbox">
-        	<input
+    <div class="ui form">
+    <div class="inline fields">
+       <label>Lifetime:</label>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
             type= "checkbox"
             label='Evergreen'
             value="Evergreen"
@@ -205,9 +213,9 @@ export default class ArticleForm extends React.Component {
             onChange={this.handleInputChange}
           />
         <label>Standard</label>
-      	</div>
-    	</div>
-   	<div class="field">
+        </div>
+      </div>
+    <div class="field">
       <div class="ui radio checkbox">
          <input
             type= "checkbox"
@@ -223,66 +231,66 @@ export default class ArticleForm extends React.Component {
 </div>
 
 
-      	      	
+                
 
-    	<Form.Field>
+      <Form.Field>
 
-     		<label>Thematic Focus:</label>
-     		    	<div class="ui pointing below red basic label">
-      				Mandatory!
-    				</div>
+        <label>Thematic Focus:</label>
+              <div class="ui pointing below red basic label">
+              Mandatory!
+            </div>
 
-    				<div role="combobox" aria-expanded="false" class="ui fluid multiple search selection dropdown">
+            <div role="combobox" aria-expanded="false" class="ui fluid multiple search selection dropdown">
 
-    				<input type="text" aria-autoComplete="list" autoComplete="off" tabIndex="0" value=""/>
-    				<i aria-hidden="true" class="dropdown icon"></i>
-    				 <div aria-multiselectable="true" role="listbox" class="menu transition">
-      		<select id="search-select" value={this.state.thematic_focus} onChange={(event) => {this.handleChange(event, "thematic_focus")}} >
-         		<option value="AL">Business</option>
-        		<option value="AK">Cars & Transportation</option>
-        		<option value="AZ">Catastrophe</option>
-        		<option value="AR">Culture</option>
-        		<option value="CA">Digital World</option>
-        		<option value="OH">Education</option>
-        		<option value="OK">Health</option>
-        		<option value="OR">History</option>
-        		<option value="PA">Human Rights</option>
-        		<option value="RI">Innovation</option>
-        		<option value="SC">Law and Justics</option>
-        		<option value="SD">Learning German</option>
-        		<option value="TN">Lifestyle</option>
-        		<option value="TX">Media</option>
-        		<option value="UT">Migration</option>
-        		<option value="VT">Nature and Environment</option>
-        		<option value="VA">Offbeat</option>
-        		<option value="WA">Politics</option>
-        		<option value="WV">Religion</option>
-        		<option value="WI">Science</option>
-        		<option value="WY">Society</option>
-        		<option value="W1">Sports</option>
-        		<option value="W2">Technology</option>
-        		<option value="W3">Travel</option>
-        	</select>
-      				</div>
-      				</div>
+            <input type="text" aria-autoComplete="list" tabIndex="0" value=""/>
+            <i aria-hidden="true" class="dropdown icon"></i>
+             <div aria-multiselectable="true" role="listbox" class="menu transition">
+          <select id="search-select" value={this.state.thematic_focus} onChange={(event) => {this.handleChange(event, "thematic_focus")}} >
+            <option value="AL">Business</option>
+            <option value="AK">Cars & Transportation</option>
+            <option value="AZ">Catastrophe</option>
+            <option value="AR">Culture</option>
+            <option value="CA">Digital World</option>
+            <option value="OH">Education</option>
+            <option value="OK">Health</option>
+            <option value="OR">History</option>
+            <option value="PA">Human Rights</option>
+            <option value="RI">Innovation</option>
+            <option value="SC">Law and Justics</option>
+            <option value="SD">Learning German</option>
+            <option value="TN">Lifestyle</option>
+            <option value="TX">Media</option>
+            <option value="UT">Migration</option>
+            <option value="VT">Nature and Environment</option>
+            <option value="VA">Offbeat</option>
+            <option value="WA">Politics</option>
+            <option value="WV">Religion</option>
+            <option value="WI">Science</option>
+            <option value="WY">Society</option>
+            <option value="W1">Sports</option>
+            <option value="W2">Technology</option>
+            <option value="W3">Travel</option>
+          </select>
+              </div>
+              </div>
 
-      	</Form.Field>
-
-
-    	<Form.Field>
-      		<label>Topic:</label>
-      		    	<div class="ui pointing below red basic label">
-      					Mandatory!
-    				</div>
-        	<select value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}} >
-        	</select>
-    	</Form.Field>
-
-	<div class="ui hidden divider"></div>
+        </Form.Field>
 
 
-    	<Form.Field>
-      	<label>Location:</label>
+      <Form.Field>
+          <label>Topic:</label>
+                <div class="ui pointing below red basic label">
+                Mandatory!
+            </div>
+          <select value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}} >
+          </select>
+      </Form.Field>
+
+  <div class="ui hidden divider"></div>
+
+
+      <Form.Field>
+        <label>Location:</label>
         <select value={this.state.location} onChange={(event) => {this.handleChange(event, "location")}}>
           <option value="DE">Deutschland</option>
           <option value="GL">Global</option>
@@ -305,10 +313,10 @@ export default class ArticleForm extends React.Component {
 
        <Form.Field>
        <label>Content Type:</label>
-       				<div class="ui pointing below red basic label">
-      					Mandatory!
-    				</div>
-      	
+              <div class="ui pointing below red basic label">
+                Mandatory!
+            </div>
+        
            <select value={this.state.content} onChange={(event) => {this.handleChange(event, "content")}}>
           <option value="article">Article</option>
           <option value="DE">Audio</option>
@@ -320,12 +328,12 @@ export default class ArticleForm extends React.Component {
           <option value="MIDDLEEASTE">Author</option>
           <option value="LATINAMERICA">Reference</option>
         </select>
-      	</Form.Field> 
+        </Form.Field> 
 
 
-    	<Form.Field>
-      	<label>Regional reference:</label>
-  		<select value={this.state.regref} onChange={(event) => {this.handleChange(event, "regref")}}>
+      <Form.Field>
+        <label>Regional reference:</label>
+      <select value={this.state.regref} onChange={(event) => {this.handleChange(event, "regref")}}>
           <option value="DE">Deutschland</option>
           <option value="GL">Global</option>
           <option value="AFRICA">Africa</option>
@@ -342,11 +350,11 @@ export default class ArticleForm extends React.Component {
       </Form.Field>
 
         <Form.Field>
-      	<label>Genre:</label>
+        <label>Genre:</label>
 
-      				<div class="ui pointing below red basic label">
-      					Mandatory!
-    				</div>
+              <div class="ui pointing below red basic label">
+                Mandatory!
+            </div>
         <select value={this.state.genre} onChange={(event) => {this.handleChange(event, "genre")}}>
           <option value="Bericht">Bericht</option>
           <option value="DE">Documentary</option>
@@ -375,23 +383,23 @@ export default class ArticleForm extends React.Component {
           <option value="AFGHANISTAN">Unterhaltung</option>
           <option value="ANGOLA">Wortlaut</option>
         </select>
-      	</Form.Field> 
+        </Form.Field> 
 
 
         <Form.Field>
         <label>Keywords:</label>
         <div class="ui left icon right labeled input">
-  		<input type="text" placeholder="Enter keywords" />
-  		<i aria-hidden="true"
-   		class="tags icon"></i>
-  		<div class="ui tag label label">Add Tag</div>
-		</div>
+      <input type="text" placeholder="Enter keywords" />
+      <i aria-hidden="true"
+      class="tags icon"></i>
+      <div class="ui tag label label">Add Tag</div>
+    </div>
 
       </Form.Field> 
 
-    	<a class="ui tag label">New <i class="delete icon"></i></a>
-		<a class="ui red tag label">Upcoming <i class="delete icon"></i> </a>
-		<a class="ui teal tag label">Featured <i class="delete icon"></i> </a>
+    <a class="ui tag label">New <i class="delete icon"></i></a>
+    <a class="ui red tag label">Upcoming <i class="delete icon"></i> </a>
+    <a class="ui teal tag label">Featured <i class="delete icon"></i> </a>
 
 <div class="ui hidden divider"></div>
 <div class="ui hidden divider"></div>

@@ -22,5 +22,7 @@ Articles.schema = new SimpleSchema({
   date_created: {type: String},
   author: {type: String},
   desc: {type: String},
-  numLikes: {type: Number, defaultValue: 0},
+  likes: {type: Number, defaultValue: 0},
+  _id: {type: Number,optional: true},
+  value: {type: Number,optional: true},
 });
