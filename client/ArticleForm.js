@@ -68,7 +68,7 @@ export default class ArticleForm extends React.Component {
             title: this.state.title,
             desc: this.state.desc,
             author: this.state.author,
-            dateCreated: "15.05.2019",
+            dateCreated: "15.09.2019",
 
         });
 
@@ -234,7 +234,7 @@ export default class ArticleForm extends React.Component {
 
     				<div role="combobox" aria-expanded="false" class="ui fluid multiple search selection dropdown">
 
-    				<input type="text" aria-autocomplete="list" autocomplete="off" tabindex="0" value=""/>
+    				<input type="text" aria-autoComplete="list" autoComplete="off" tabIndex="0" value=""/>
     				<i aria-hidden="true" class="dropdown icon"></i>
     				 <div aria-multiselectable="true" role="listbox" class="menu transition">
       		<select id="search-select" value={this.state.thematic_focus} onChange={(event) => {this.handleChange(event, "thematic_focus")}} >
