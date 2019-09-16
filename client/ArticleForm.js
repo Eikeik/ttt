@@ -24,9 +24,8 @@ export default class ArticleForm extends React.Component {
             title: '',
             desc: '',
             author: '',
-            likes: '0',
-            _id:'',
-            id:'',
+            likes: '',
+            _id: '',
             value: ''
         };
 
@@ -72,7 +71,6 @@ export default class ArticleForm extends React.Component {
             dateCreated: "15.09.2019",
             likes: this.state.likes,
             _id: this.state._id,
-            id: this.state.id,
             value: this.state.value
         });
 
@@ -133,12 +131,12 @@ export default class ArticleForm extends React.Component {
         </Form.Field>
 
 
-   <div class="ui form">
-    <div class="inline fields">
+   <div className="ui form">
+    <div className="inline fields">
        <label>Priority:</label>
 
-        <div class="field">
-        <div class="ui radio checkbox">
+        <div className="field">
+        <div className="ui radio checkbox">
         
             <input
             type= "checkbox"
@@ -151,8 +149,8 @@ export default class ArticleForm extends React.Component {
           </div>
       </div>
 
-        <div class="field">
-          <div class="ui radio checkbox">
+        <div className="field">
+          <div className="ui radio checkbox">
                       
             <input
             type= "checkbox"
@@ -165,8 +163,8 @@ export default class ArticleForm extends React.Component {
             </div>
       </div>
 
-        <div class="field">
-          <div class="ui radio checkbox">
+        <div className="field">
+          <div className="ui radio checkbox">
             
             <input
             type= "checkbox"
@@ -179,8 +177,8 @@ export default class ArticleForm extends React.Component {
             </div>
       </div>
 
-    <div class="field">
-          <div class="ui radio checkbox">
+    <div className="field">
+          <div className="ui radio checkbox">
       
             <input
             type= "checkbox"
@@ -192,7 +190,7 @@ export default class ArticleForm extends React.Component {
             <label>Neutral</label>
             </div>
       </div>
-                <div class="ui left pointing red basic label">
+                <div className="ui left pointing red basic label">
                 Mandatory!
             </div>
       </div>
@@ -200,11 +198,11 @@ export default class ArticleForm extends React.Component {
 
 
 
-    <div class="ui form">
-    <div class="inline fields">
+    <div className="ui form">
+    <div className="inline fields">
        <label>Lifetime:</label>
-      <div class="field">
-        <div class="ui radio checkbox">
+      <div className="field">
+        <div className="ui radio checkbox">
           <input
             type= "checkbox"
             label='Evergreen'
@@ -215,8 +213,8 @@ export default class ArticleForm extends React.Component {
         <label>Standard</label>
         </div>
       </div>
-    <div class="field">
-      <div class="ui radio checkbox">
+    <div className="field">
+      <div className="ui radio checkbox">
          <input
             type= "checkbox"
             label='Evergreen'
@@ -231,20 +229,18 @@ export default class ArticleForm extends React.Component {
 </div>
 
 
-                
-
       <Form.Field>
 
         <label>Thematic Focus:</label>
-              <div class="ui pointing below red basic label">
+              <div className="ui pointing below red basic label">
               Mandatory!
             </div>
 
-            <div role="combobox" aria-expanded="false" class="ui fluid multiple search selection dropdown">
+            <div role="combobox" aria-expanded="false" className="ui fluid multiple search selection dropdown">
+            <input type="text" aria-autocomplete="list" tabIndex="0" value="thematic_focus" onChange={this.handleInputChange}/>
+            <i aria-hidden="true" className="dropdown icon"></i>
+             <div aria-multiselectable="true" role="listbox" className="menu transition">
 
-            <input type="text" aria-autoComplete="list" tabIndex="0" value=""/>
-            <i aria-hidden="true" class="dropdown icon"></i>
-             <div aria-multiselectable="true" role="listbox" class="menu transition">
           <select id="search-select" value={this.state.thematic_focus} onChange={(event) => {this.handleChange(event, "thematic_focus")}} >
             <option value="AL">Business</option>
             <option value="AK">Cars & Transportation</option>
@@ -278,21 +274,79 @@ export default class ArticleForm extends React.Component {
 
 
       <Form.Field>
-          <label>Topic:</label>
-                <div class="ui pointing below red basic label">
-                Mandatory!
-            </div>
-          <select value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}} >
-          </select>
-      </Form.Field>
+          <label>Topics:</label>
+                <div className="ui pointing below red basic label"> Mandatory! </div>
+                <div role="combobox" aria-expanded="false" className="ui fluid multiple search selection dropdown" value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}}>
+      <input
+    type="text"
+    autoComplete="off"
+    className="search"
+    tabIndex="0"
+    value=""
+    onChange={this.handleInputChange}
+  />
+  <span className="sizer"></span>
+  <div className="default text" role="alert" aria-live="polite" aria-atomic="true">State</div>
+  <i aria-hidden="true" className="dropdown icon"></i>
+  <div aria-multiselectable="true" role="listbox" className="menu transition">
+    <div
+      role="option"
+      aria-checked="false"
+      aria-selected="true"
+      className="selected item"
+    >
+      <span className="text">Alabama</span>
+    </div>
+    <div
+    
+      role="option"
+      aria-checked="false"
+      aria-selected="false"
+      className="item"
+    >
+      <span className="text">Alaska</span>
+    </div>
+    <div
+     
+      role="option"
+      aria-checked="false"
+      aria-selected="false"
+      className="item"
+    >
+      <span className="text">Arizona</span>
+    </div>
+    <div
+      role="option"
+      aria-checked="false"
+      aria-selected="false"
+      className="item"
+    >
+      <span className="text">Arkansas</span>
+    </div>
+    <div
+      role="option"
+      aria-checked="false"
+      aria-selected="false"
+      className="item"
+    >
+      <span className="text">California</span>
+    </div>
+    
+     
+    
+    </div>
+    </div>
 
-  <div class="ui hidden divider"></div>
+</Form.Field>
+         
+      
+  <div className="ui hidden divider"></div>
 
 
       <Form.Field>
         <label>Location:</label>
         <select value={this.state.location} onChange={(event) => {this.handleChange(event, "location")}}>
-          <option value="DE">Deutschland</option>
+          <option value="DE">Germany</option>
           <option value="GL">Global</option>
           <option value="AFRICA">Africa</option>
           <option value="ASIA">Asia</option>
@@ -308,12 +362,12 @@ export default class ArticleForm extends React.Component {
       </Form.Field> 
 
 
-<div class="ui hidden divider"></div>
+<div className="ui hidden divider"></div>
 
 
        <Form.Field>
        <label>Content Type:</label>
-              <div class="ui pointing below red basic label">
+              <div className="ui pointing below red basic label">
                 Mandatory!
             </div>
         
@@ -352,7 +406,7 @@ export default class ArticleForm extends React.Component {
         <Form.Field>
         <label>Genre:</label>
 
-              <div class="ui pointing below red basic label">
+              <div className="ui pointing below red basic label">
                 Mandatory!
             </div>
         <select value={this.state.genre} onChange={(event) => {this.handleChange(event, "genre")}}>
@@ -388,21 +442,21 @@ export default class ArticleForm extends React.Component {
 
         <Form.Field>
         <label>Keywords:</label>
-        <div class="ui left icon right labeled input">
+        <div className="ui left icon right labeled input">
       <input type="text" placeholder="Enter keywords" />
       <i aria-hidden="true"
-      class="tags icon"></i>
-      <div class="ui tag label label">Add Tag</div>
+      className="tags icon"></i>
+      <div className="ui tag label label">Add Tag</div>
     </div>
 
       </Form.Field> 
 
-    <a class="ui tag label">New <i class="delete icon"></i></a>
-    <a class="ui red tag label">Upcoming <i class="delete icon"></i> </a>
-    <a class="ui teal tag label">Featured <i class="delete icon"></i> </a>
+    <a className="ui tag label">New <i className="delete icon"></i></a>
+    <a className="ui red tag label">Upcoming <i className="delete icon"></i> </a>
+    <a className="ui teal tag label">Featured <i className="delete icon"></i> </a>
 
-<div class="ui hidden divider"></div>
-<div class="ui hidden divider"></div>
+<div className="ui hidden divider"></div>
+<div className="ui hidden divider"></div>
 
 
         <Button type='submit' onClick={this.handleSubmit}>Submit</Button>
