@@ -1,6 +1,11 @@
 import React from 'react';
 import { Label, Form, Input, Button, Radio, Checkbox, Messages, Container, Divider, Dropdown, Header, Segment, Group, Table, Flag } from 'semantic-ui-react'
 import { Articles } from '../imports/Article';
+import DropdownDivider from './DropdownDivider'
+import DropdownItem from './DropdownItem'
+import DropdownHeader from './DropdownHeader'
+import DropdownMenu from './DropdownMenu'
+import DropdownSearchInput from './DropdownSearchInput'
 
 export default class ArticleForm extends React.Component {
     constructor(props) {
@@ -275,69 +280,14 @@ export default class ArticleForm extends React.Component {
 
       <Form.Field>
           <label>Topics:</label>
-                <div className="ui pointing below red basic label"> Mandatory! </div>
-                <div role="combobox" aria-expanded="false" className="ui fluid multiple search selection dropdown" value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}}>
-      <input
-    type="text"
-    autoComplete="off"
-    className="search"
-    tabIndex="0"
-    value=""
-    onChange={this.handleInputChange}
-  />
-  <span className="sizer"></span>
-  <div className="default text" role="alert" aria-live="polite" aria-atomic="true">State</div>
-  <i aria-hidden="true" className="dropdown icon"></i>
-  <div aria-multiselectable="true" role="listbox" className="menu transition">
-    <div
-      role="option"
-      aria-checked="false"
-      aria-selected="true"
-      className="selected item"
-    >
-      <span className="text">Alabama</span>
-    </div>
-    <div
-    
-      role="option"
-      aria-checked="false"
-      aria-selected="false"
-      className="item"
-    >
-      <span className="text">Alaska</span>
-    </div>
-    <div
-     
-      role="option"
-      aria-checked="false"
-      aria-selected="false"
-      className="item"
-    >
-      <span className="text">Arizona</span>
-    </div>
-    <div
-      role="option"
-      aria-checked="false"
-      aria-selected="false"
-      className="item"
-    >
-      <span className="text">Arkansas</span>
-    </div>
-    <div
-      role="option"
-      aria-checked="false"
-      aria-selected="false"
-      className="item"
-    >
-      <span className="text">California</span>
-    </div>
-    
-     
-    
-    </div>
-    </div>
+          
+          <div role="listbox" aria-expanded="false" className="ui fluid pointing below red basic label"> Mandatory! </div>
+         <select className="ui multiple search selection dropdown" value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}} >
+          <option value="A" >Source A</option>
+          <option value="B" >Source B</option>
+        </select>
 
-</Form.Field>
+      </Form.Field>
          
       
   <div className="ui hidden divider"></div>
