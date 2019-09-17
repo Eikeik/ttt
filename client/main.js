@@ -21,8 +21,6 @@ class App extends React.Component {
 
 Meteor.startup(() => {
   render(
-    <App>
-    <Dropdown />
-  </App>,
+    <App />,
    document.getElementById('app'));
 });
