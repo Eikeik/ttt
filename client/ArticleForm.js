@@ -24,7 +24,7 @@ export default class ArticleForm extends React.Component {
             title: '',
             desc: '',
             author: '',
-            likes: '0',
+            likes: '',
             _id:'',
             id:'',
             value: ''
@@ -60,7 +60,7 @@ export default class ArticleForm extends React.Component {
             genre: this.state.genre,
             keywords: this.state.keywords,
             event_time: this.state.event_time,
-            topstory: this.state.false.topstory,
+            topstory: this.state.topstory,
             lifetime: this.state.lifetime,
             prio: this.state.prio,
             date_published: this.state.date_published,
@@ -71,7 +71,7 @@ export default class ArticleForm extends React.Component {
             author: this.state.author,
             dateCreated: "15.09.2019",
             likes: this.state.likes,
-            _id: this.state._id,
+            // _id: this.state._id,
             id: this.state.id,
             value: this.state.value
         });
@@ -238,11 +238,11 @@ export default class ArticleForm extends React.Component {
         <label>Thematic Focus:</label>
               <div class="ui pointing below red basic label">
               Mandatory!
-            </div>
+              </div>
 
             <div role="combobox" aria-expanded="false" class="ui fluid multiple search selection dropdown">
 
-            <input type="text" aria-autoComplete="list" tabIndex="0" value=""/>
+            <input type="text" aria-autocomplete="list" tabIndex="10" value=""/>
             <i aria-hidden="true" class="dropdown icon"></i>
              <div aria-multiselectable="true" role="listbox" class="menu transition">
           <select id="search-select" value={this.state.thematic_focus} onChange={(event) => {this.handleChange(event, "thematic_focus")}} >
@@ -283,6 +283,18 @@ export default class ArticleForm extends React.Component {
                 Mandatory!
             </div>
           <select value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}} >
+              <option value="DE">Deutschland</option>
+              <option value="GL">Global</option>
+          <option value="AFRICA">Africa</option>
+          <option value="ASIA">Asia</option>
+          <option value="EUROPE">Europe</option>
+          <option value="NORTHAMERICA">North America</option>
+          <option value="MIDDLEEASTE">Middle East</option>
+          <option value="LATINAMERICA">Latin America</option>
+          <option value="OCEANIA">Oceania</option>
+          <option value="ALGERIA">Algeria</option>
+          <option value="AFGHANISTAN">Afghanistan</option>
+          <option value="ANGOLA">Angola</option>
           </select>
       </Form.Field>
 
@@ -357,31 +369,31 @@ export default class ArticleForm extends React.Component {
             </div>
         <select value={this.state.genre} onChange={(event) => {this.handleChange(event, "genre")}}>
           <option value="Bericht">Bericht</option>
-          <option value="DE">Documentary</option>
-          <option value="GL">Erklärstück</option>
-          <option value="AFRICA">Glosse/Satire</option>
-          <option value="ASIA">Gottesdienst</option>
-          <option value="EUROPE">Hintergrund</option>
-          <option value="NORTHAMERICA">Interview</option>
-          <option value="MIDDLEEASTE">Karikatur</option>
-          <option value="LATINAMERICA">Kinderpgrogramm</option>
-          <option value="OCEANIA">Kolumne</option>
-          <option value="ALGERIA">Kommentar</option>
-          <option value="AFGHANISTAN">Listicle</option>
-          <option value="ANGOLA">Live-Berichterstattung</option>
-          <option value="AFRICA">Long Read</option>
-          <option value="ASIA">Magazin</option>
-          <option value="EUROPE">Musiksendung</option>
-          <option value="NORTHAMERICA">Nachricht</option>
-          <option value="MIDDLEEASTE">Nachricht</option>
-          <option value="LATINAMERICA">Presseschau</option>
-          <option value="OCEANIA">Pressemitteilung</option>
-          <option value="ALGERIA">Ratgeber</option>
-          <option value="AFGHANISTAN">Reportage</option>
-          <option value="ANGOLA">Service</option>
-          <option value="ALGERIA">Talk</option>
-          <option value="AFGHANISTAN">Unterhaltung</option>
-          <option value="ANGOLA">Wortlaut</option>
+          <option value="Documentary">Documentary</option>
+          <option value="Erklärstück">Erklärstück</option>
+          <option value="Glosse">Glosse/Satire</option>
+          <option value="Gottesdienst">Gottesdienst</option>
+          <option value="Hintergrund">Hintergrund</option>
+          <option value="Interview">Interview</option>
+          <option value="Karikatur">Karikatur</option>
+          <option value="Kinderpgrogramm">Kinderpgrogramm</option>
+          <option value="Kolumne">Kolumne</option>
+          <option value="Kommentar">Kommentar</option>
+          <option value="Listicle">Listicle</option>
+          <option value="Berichterstattung">Live-Berichterstattung</option>
+          <option value="LongRead">Long Read</option>
+          <option value="Magazin">Magazin</option>
+          <option value="Musiksendung">Musiksendung</option>
+          <option value="Nachricht">Nachricht</option>
+          <option value="Nachricht2">Nachricht2</option>
+          <option value="Presseschau">Presseschau</option>
+          <option value="Pressemitteilung">Pressemitteilung</option>
+          <option value="Ratgeber">Ratgeber</option>
+          <option value="Reportage">Reportage</option>
+          <option value="Service">Service</option>
+          <option value="Talk">Talk</option>
+          <option value="Unterhaltung">Unterhaltung</option>
+          <option value="Wortlaut">Wortlaut</option>
         </select>
         </Form.Field> 
 
