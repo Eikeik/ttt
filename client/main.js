@@ -4,6 +4,7 @@ import { Button, Container } from 'semantic-ui-react';
 import React from 'react';
 
 import { Dropdown } from './dropdown';
+import TodoList from "./TodoList";
 import { Article } from './Article';
 import ArticleForm from './ArticleForm';
 import ArticleContainer from './Article';
@@ -13,6 +14,7 @@ class App extends React.Component {
     return (
       <Container style={{ margin: 20 }}>
         <ArticleForm />
+        <TodoList />
         <ArticlesContainer />
   		</Container>
     );

@@ -23,3 +23,4 @@ jquery
 react-meteor-data
 static-html
 aldeed:simple-schema
+aldeed:collection2@3.0.0

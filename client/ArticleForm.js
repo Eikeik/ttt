@@ -2,6 +2,17 @@ import React from 'react';
 import { Label, Form, Input, Button, Radio, Checkbox, Messages, Container, Divider, Dropdown, Header, Segment, Group, Table, Flag } from 'semantic-ui-react'
 import { Articles } from '../imports/Article';
 
+
+
+  const options = [
+    { text: "This is a topic", value: 1 },
+    { text: "This is some more topic", value: 2 },
+    { text: "This is some mooooooore topic", value: 3 },
+    { text: "This is some moooooooooooooooooore topic", value: 4 }
+  ];
+
+
+
 export default class ArticleForm extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +38,9 @@ export default class ArticleForm extends React.Component {
             likes: '',
             _id:'',
             id:'',
-            value: ''
+            value: [],
+            topics: [],
+            text: ""
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -50,10 +63,12 @@ export default class ArticleForm extends React.Component {
     }
 
     handleSubmit(event) {
+      event.preventDefault();
         Articles.insert({
             ptc: this.state.ptc,
             thematic_focus: this.state.thematic_focus,
             topic: this.state.topic,
+            topics: this.state.topics,
             location: this.state.location,
             content: this.state.content,
             regref: this.state.regref,
@@ -71,7 +86,7 @@ export default class ArticleForm extends React.Component {
             author: this.state.author,
             dateCreated: "15.09.2019",
             likes: this.state.likes,
-            // _id: this.state._id,
+            text: this.state.text,
             id: this.state.id,
             value: this.state.value
         });
@@ -80,24 +95,30 @@ export default class ArticleForm extends React.Component {
         console.log('A desc was submitted: ' + this.state.desc);
         console.log('A author was submitted: ' + this.state.author);
 
-        event.preventDefault();
+          this.setState(s);
+        
     }
 
 
     handleDelete(event) {
-        // Articles.splice(article, 0);
-        // this.setState({deleteArray: articles});
-        this.props.articles.splice(this.props.key, 1);
-        this.setState({
-            deleteArray: articles
-        });
+     
     }
 
+    addTopic(event, type) {
+
+    }
 
 
     render() {
         return (
-            <Form>
+
+        <Form>
+        <Form.Field>
+          <label>Topic:</label>
+          <input mulitple="true" placeholder='topics' value={this.state.topics} onChange={(event) => {this.handleChange(event, "topics")}} />
+        <Button type='submit' onClick={(event) => {this.addTopic(event, "topics")}}> add</Button>
+         </Form.Field>
+
         <Form.Field>
           <label>Title:</label>
           <input placeholder='title' value={this.state.title} onChange={(event) => {this.handleChange(event, "title")}} />
@@ -133,12 +154,12 @@ export default class ArticleForm extends React.Component {
         </Form.Field>
 
 
-   <div class="ui form">
-    <div class="inline fields">
+   <div className="ui form">
+    <div className="inline fields">
        <label>Priority:</label>
 
-        <div class="field">
-        <div class="ui radio checkbox">
+        <div className="field">
+        <div className="ui radio checkbox">
         
             <input
             type= "checkbox"
@@ -151,8 +172,8 @@ export default class ArticleForm extends React.Component {
           </div>
       </div>
 
-        <div class="field">
-          <div class="ui radio checkbox">
+        <div className="field">
+          <div className="ui radio checkbox">
                       
             <input
             type= "checkbox"
@@ -165,8 +186,8 @@ export default class ArticleForm extends React.Component {
             </div>
       </div>
 
-        <div class="field">
-          <div class="ui radio checkbox">
+        <div className="field">
+          <div className="ui radio checkbox">
             
             <input
             type= "checkbox"
@@ -179,8 +200,8 @@ export default class ArticleForm extends React.Component {
             </div>
       </div>
 
-    <div class="field">
-          <div class="ui radio checkbox">
+    <div className="field">
+          <div className="ui radio checkbox">
       
             <input
             type= "checkbox"
@@ -192,7 +213,7 @@ export default class ArticleForm extends React.Component {
             <label>Neutral</label>
             </div>
       </div>
-                <div class="ui left pointing red basic label">
+                <div className="ui left pointing red basic label">
                 Mandatory!
             </div>
       </div>
@@ -200,11 +221,11 @@ export default class ArticleForm extends React.Component {
 
 
 
-    <div class="ui form">
-    <div class="inline fields">
+    <div className="ui form">
+    <div className="inline fields">
        <label>Lifetime:</label>
-      <div class="field">
-        <div class="ui radio checkbox">
+      <div className="field">
+        <div className="ui radio checkbox">
           <input
             type= "checkbox"
             label='Evergreen'
@@ -215,8 +236,8 @@ export default class ArticleForm extends React.Component {
         <label>Standard</label>
         </div>
       </div>
-    <div class="field">
-      <div class="ui radio checkbox">
+    <div className="field">
+      <div className="ui radio checkbox">
          <input
             type= "checkbox"
             label='Evergreen'
@@ -231,20 +252,370 @@ export default class ArticleForm extends React.Component {
 </div>
 
 
-                
 
+        <Form.Field onSubmit={this.handleSubmit}>
+   
+          <select multiple={true} x={['B', 'C']}>
+            <option x="grapefruit">Pampelmuse</option>
+            <option x="lime">Limette</option>
+            <option x="coconut">Kokosnuss</option>
+            <option x="mango">Mango</option>
+          </select>
+     
+        <input  x={this.state.x} onChange={this.handleChange} type="submit" />
+      </Form.Field>
+
+
+<select className="fluid search dropdown" multiple="">
+  <option value="">State</option>
+  <option value="AL">Alabama</option>
+  <option value="AK">Alaska</option>
+  <option value="AZ">Arizona</option>
+  <option value="AR">Arkansas</option>
+  <option value="CA">California</option>
+  <option value="CO">Colorado</option>
+  <option value="CT">Connecticut</option>
+  <option value="DE">Delaware</option>
+</select>
+                
+   <div className="ui hidden divider"></div>
       <Form.Field>
 
+   <div className="ui fluid multiple search selection dropdown">
+            <input name="tags" type="hidden"/>
+            <i className="dropdown icon"></i>
+            <div className="default text">Tags</div>
+            <div className="menu">
+              <div className="item" data-value="angular">Angular</div>
+                <div className="item" data-value="css">CSS</div>
+                <div className="item" data-value="design">Graphic Design</div>
+                <div className="item" data-value="ember">Ember</div>
+            </div>
+          </div>
+           
+          </Form.Field>
+   <div className="ui hidden divider"></div>
+   <Form.Field>
+        <label>Topics1:</label>    
+        <Dropdown ui fluid multiple search selection options={options} />
+  
+    <div className="ui hidden divider"></div>
+  <Dropdown role="combobox" aria-expanded="true" className="ui fluid multiple search selection dropdown"/>
+
+
+  </Form.Field> 
+
+  <div className="ui hidden divider"></div>
+   <Form.Field> 
+
+    <input
+      type="text"
+      autoComplete="on"
+      className="search"
+      onChange={this.handleSubmit}
+    />
+
+    <div className="default text" role="alert" aria-live="polite" aria-atomic="true"></div>
+    <i aria-hidden="true" className="dropdown icon"></i>
+    <div aria-multiselectable="true" role="listbox" className="menu transition" onChange={this.handleSubmit}>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="true"
+        className="selected item"
+      >
+        <span className="text">Alabama</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Alaska</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Arizona</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Arkansas</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">California</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Colorado</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Connecticut</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Delaware</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Florida</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Georgia</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Hawaii</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Idaho</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Illinois</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Indiana</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Iowa</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Kansas</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Kentucky</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Louisiana</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Maine</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Maryland</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Massachusetts</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Michigan</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Minnesota</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Mississippi</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Missouri</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Montana</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Nebraska</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">Nevada</span>
+      </div>
+      <div
+        role="option"
+        aria-checked="false"
+        aria-selected="false"
+        className="item"
+      >
+        <span className="text">New Hampshire</span>
+      </div>
+  
+  
+  </div>
+  </Form.Field>
+  
+    <div className="ui hidden divider"></div>
+  
+
+
+
+  <Form.Field>
+  
+   <label>Topics2:</label>
+    <div role="listbox" aria-expanded="false" className="ui fluid pointing below red basic label"> Mandatory! </div>
+  
+    <div className="ui floating dropdown labeled icon button">
+      <i className="filter icon"></i>
+      <span className="text">Filter Posts</span>
+      <div className="menu">
+        <div className="ui icon search input">
+          <i className="search icon"></i>
+          <input   
+              placeholder="Gesuchtes ..." 
+              name="search"       
+              type="text"
+            />
+      </div>
+        <div className="header">
+          <i className="tags icon"></i>
+          Tag Label
+        </div>
+        <div className="item">
+          <div className="ui red empty circular label"></div>
+          Important
+        </div>
+        <div className="item">
+          <div className="ui blue empty circular label"></div>
+          Announcement
+        </div>
+        <div className="item">
+          <div className="ui black empty circular label"></div>
+          Cannot Fix
+        </div>
+        <div className="item">
+          <div className="ui green empty circular label"></div>
+          Discussion
+        </div>
+      </div>
+    </div>
+    </Form.Field>
+  
+  
+    <div className="ui hidden divider"></div>
+
+  <Form.Field>
+
         <label>Thematic Focus:</label>
-              <div class="ui pointing below red basic label">
+              <div className="ui pointing below red basic label">
               Mandatory!
               </div>
 
-            <div role="combobox" aria-expanded="false" class="ui fluid multiple search selection dropdown">
+            <div role="combobox" aria-expanded="false" className="ui fluid multiple search selection dropdown">
 
             <input type="text" aria-autocomplete="list" tabIndex="10" value=""/>
-            <i aria-hidden="true" class="dropdown icon"></i>
-             <div aria-multiselectable="true" role="listbox" class="menu transition">
+            <i aria-hidden="true" className="dropdown icon"></i>
+             <div aria-multiselectable="true" role="listbox" className="menu transition">
           <select id="search-select" value={this.state.thematic_focus} onChange={(event) => {this.handleChange(event, "thematic_focus")}} >
             <option value="AL">Business</option>
             <option value="AK">Cars & Transportation</option>
@@ -279,11 +650,11 @@ export default class ArticleForm extends React.Component {
 
       <Form.Field>
           <label>Topic:</label>
-                <div class="ui pointing below red basic label">
+                <div className="ui pointing below red basic label">
                 Mandatory!
             </div>
           <select value={this.state.topic} onChange={(event) => {this.handleChange(event, "topic")}} >
-              <option value="DE">Deutschland</option>
+            <option value="DE">Deutschland</option>
               <option value="GL">Global</option>
           <option value="AFRICA">Africa</option>
           <option value="ASIA">Asia</option>
@@ -298,7 +669,7 @@ export default class ArticleForm extends React.Component {
           </select>
       </Form.Field>
 
-  <div class="ui hidden divider"></div>
+  <div className="ui hidden divider"></div>
 
 
       <Form.Field>
@@ -320,12 +691,12 @@ export default class ArticleForm extends React.Component {
       </Form.Field> 
 
 
-<div class="ui hidden divider"></div>
+<div className="ui hidden divider"></div>
 
 
        <Form.Field>
        <label>Content Type:</label>
-              <div class="ui pointing below red basic label">
+              <div className="ui pointing below red basic label">
                 Mandatory!
             </div>
         
@@ -364,7 +735,7 @@ export default class ArticleForm extends React.Component {
         <Form.Field>
         <label>Genre:</label>
 
-              <div class="ui pointing below red basic label">
+              <div className="ui pointing below red basic label">
                 Mandatory!
             </div>
         <select value={this.state.genre} onChange={(event) => {this.handleChange(event, "genre")}}>
@@ -400,21 +771,21 @@ export default class ArticleForm extends React.Component {
 
         <Form.Field>
         <label>Keywords:</label>
-        <div class="ui left icon right labeled input">
+        <div className="ui left icon right labeled input">
       <input type="text" placeholder="Enter keywords" />
       <i aria-hidden="true"
-      class="tags icon"></i>
-      <div class="ui tag label label">Add Tag</div>
+      className="tags icon"></i>
+      <div className="ui tag label label">Add Tag</div>
     </div>
 
       </Form.Field> 
 
-    <a class="ui tag label">New <i class="delete icon"></i></a>
-    <a class="ui red tag label">Upcoming <i class="delete icon"></i> </a>
-    <a class="ui teal tag label">Featured <i class="delete icon"></i> </a>
+    <a className="ui tag label">New <i className="delete icon"></i></a>
+    <a className="ui red tag label">Upcoming <i className="delete icon"></i> </a>
+    <a className="ui teal tag label">Featured <i className="delete icon"></i> </a>
 
-<div class="ui hidden divider"></div>
-<div class="ui hidden divider"></div>
+<div className="ui hidden divider"></div>
+<div className="ui hidden divider"></div>
 
 
         <Button type='submit' onClick={this.handleSubmit}>Submit</Button>

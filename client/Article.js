@@ -5,10 +5,7 @@ import { Articles } from '../imports/Article';
 import { createContainer } from 'meteor/react-meteor-data';
 
 export class Article extends React.Component {
-    state = {
-        likes: this.props.likes
-    };
-
+ 
   handleDelete = () => {
     alert("hier muss noch die Funktion des Löschens dieses Arikels eingefügt werden. Irgendwie per _id von der List nehmen. Todo für die Woche");
   };
@@ -19,9 +16,9 @@ export class Article extends React.Component {
   };
 
 
+
     constructor(props) {
         super(props);
-        // this.delete = this.deleteArticle.bind(this);
     }
 
     render() {
@@ -35,7 +32,7 @@ export class Article extends React.Component {
               
               <Icon name='thumbs outline up' size='large' /> {post.likes}
             </Button>
-               <Icon className={this.styleCardHeader()}>{this.styleLikes()} </Icon>
+               <Icon> </Icon>
              
               </Grid.Column>
               <Grid.Column width={3}>
@@ -76,16 +73,8 @@ export class Article extends React.Component {
         );
     }
 
-    styleCardHeader() {
-    let classes = "names";
-    classes += this.state.likes === 0 ? "warning" : "primary";
-    return classes;
-  }
 
-    styleLikes() {
-    const { likes } = this.state;
-    return likes === 0 ? "No items" : likes;
-  }
+
 
 }
 

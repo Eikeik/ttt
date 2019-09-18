@@ -1,12 +1,19 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+// import {SimpleSchema} from 'meteor/aldeed:collection2';
+import { SimpleSchema} from 'meteor/aldeed:simple-schema';
 
 export const Articles = new Mongo.Collection("Articles");
 
 Articles.schema = new SimpleSchema({
   ptc: {type: Boolean,optional: true},
   thematic_focus: {type: String,optional: false},
-  topic: {type: String,optional: true},
+  topic: {type: String},
+  topics: {
+    type: Array
+  },
+  'topics.$': {
+    type: String
+  },
   location: {type: String,optional: true},
   content: {type: String},
   regref: {type: String,optional: true},
@@ -23,6 +30,7 @@ Articles.schema = new SimpleSchema({
   author: {type: String},
   desc: {type: String},
   likes: {type: Number, defaultValue: 0},
-  _id: {type: Number,optional: true},
+  id: {type: String},
+  text: {type: String},
   value: {type: Number,optional: true},
 });
