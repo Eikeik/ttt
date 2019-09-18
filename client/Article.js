@@ -10,7 +10,7 @@ export class Article extends React.Component {
     };
 
   handleDelete = () => {
-    alert("Button Clicked!");
+    alert("hier muss noch die Funktion des Löschens dieses Arikels eingefügt werden. Irgendwie per _id von der List nehmen. Todo für die Woche");
   };
   
 
@@ -35,7 +35,7 @@ export class Article extends React.Component {
               
               <Icon name='thumbs outline up' size='large' /> {post.likes}
             </Button>
-               <Icon className={this.styleCardHeader()}>{this.styleLikes()}</Icon>
+               <Icon className={this.styleCardHeader()}>{this.styleLikes()} </Icon>
              
               </Grid.Column>
               <Grid.Column width={3}>
@@ -58,7 +58,7 @@ export class Article extends React.Component {
                   {post.author}
               </Grid.Column>
               <Grid.Column width={2}>
-             <Button onClick={() => this.props.handleDelete(this.props.post._id)}>
+             <Button onClick={() => this.handleDelete(post._id)}>
               Delete
             </Button>
 
