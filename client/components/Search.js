@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Label, Form, Input, Segment, Group, Table, Flag } from 'semantic-ui-react'
 
 /* ###################### */
 /* ##### Search bar ##### */
