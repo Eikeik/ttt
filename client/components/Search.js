@@ -11,7 +11,7 @@ class Search extends Component {
   render() {
     const { filterVal, filterUpdate} = this.props
     return (
-      <Form>
+      
         <Input 
           type='text'
           ref='filterInput'
@@ -22,7 +22,7 @@ class Search extends Component {
            filterUpdate(this.refs.filterInput.value) 
           }}
         /> 
-      </Form>
+      
     )
   }
 }

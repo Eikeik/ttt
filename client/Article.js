@@ -19,10 +19,11 @@ export class Article extends React.Component {
 
     constructor(props) {
         super(props);
-    }
+        
+  }
 
     render() {
-        const postList = this.props.articles.map((post) =>
+      const postList = this.props.articles.map((post) =>
         <Card fluid key={post._id} id={post._id}>
         <Card.Content>
           <Grid columns={5} verticalAlign='middle'>
@@ -37,10 +38,9 @@ export class Article extends React.Component {
                 <Card.Meta>
                   Created on: {post.dateCreated}
                 </Card.Meta>
-
-                <Card.Meta>
-                 {post.content}
-                </Card.Meta>    
+                  <Card.Meta>
+                  post.genre= {post.genre} 
+                </Card.Meta>        
               </Grid.Column>
               <Grid.Column width={8}>
                 <Card.Description>
