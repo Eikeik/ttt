@@ -27,7 +27,7 @@ export class Article extends React.Component {
         <Card.Content>
           <Grid columns={5} verticalAlign='middle'>
             <Grid.Row>
-            <Image src='./flower.jpg' size='tiny' shape='circular' spaced/>
+           
               <Grid.Column width={1}>             
             </Grid.Column>
               <Grid.Column width={3}>

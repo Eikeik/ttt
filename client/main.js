@@ -7,7 +7,8 @@ import { Dropdown } from './dropdown';
 import { Article } from './Article';
 import ArticleForm from './ArticleForm';
 import ArticleContainer from './Article';
-
+require('normalize-css');
+require('./style.css');
 class App extends React.Component {
   render() {
     return (

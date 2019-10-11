@@ -11,7 +11,7 @@ export default ({
 }) => (
   <li
     className={info.sex}
-    onClick={() => handleFavourite(id)}>
+	onClick={() => handleFavourite(id)}>
     {info.name}
   </li>
 )
