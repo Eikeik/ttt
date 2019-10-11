@@ -5,62 +5,59 @@ import { Articles } from '../imports/Article';
 import { createContainer } from 'meteor/react-meteor-data';
 
 export class Article extends React.Component {
-    state = {
-        likes: this.props.likes
+
+    handleDelete = () => {
+        alert("rgendwie per _id von der List nehmen. Todo für die Woche");
     };
 
-  handleDelete = () => {
-    alert("hier muss noch die Funktion des Löschens dieses Arikels eingefügt werden. Irgendwie per _id von der List nehmen. Todo für die Woche");
-  };
-  
 
-   handleIncrement = e => {
-    this.setState({ likes: this.state.likes + 1 });
-  };
+    handleIncrement = e => {
+        this.setState({ likes: this.state.likes + 1 });
+    };
+
 
 
     constructor(props) {
         super(props);
-        // this.delete = this.deleteArticle.bind(this);
     }
 
     render() {
         const postList = this.props.articles.map((post) =>
-      <Card fluid key={post._id} id={post._id}>
+        <Card fluid key={post._id} id={post._id}>
         <Card.Content>
           <Grid columns={5} verticalAlign='middle'>
             <Grid.Row>
-              <Grid.Column width={1}>
-              <Button onClick={post => {this.handleIncrement({post});}}>
-              
-              <Icon name='thumbs outline up' size='large' /> {post.likes}
-            </Button>
-               <Icon className={this.styleCardHeader()}>{this.styleLikes()} </Icon>
-             
-              </Grid.Column>
+            <Image src='./flower.jpg' size='tiny' shape='circular' spaced/>
+              <Grid.Column width={1}>             
+            </Grid.Column>
               <Grid.Column width={3}>
                 <Card.Header>
-                  {post.title}
+                  Titel: {post.title}
                 </Card.Header>
                 <Card.Meta>
-                  {post.dateCreated}
+                  Created on: {post.dateCreated}
                 </Card.Meta>
-                <Label>Nachricht</Label>
-                <Label>India</Label>
+
+                <Card.Meta>
+                 {post.content}
+                </Card.Meta>    
               </Grid.Column>
-              <Grid.Column width={10}>
+              <Grid.Column width={8}>
                 <Card.Description>
-                  {post.desc}
+                  Description: {post.desc}
                 </Card.Description>
-              </Grid.Column>
-               <Grid.Column width={2}>
-                  <Image src='./flower.jpg' size='tiny' shape='circular' spaced/>
-                  {post.author}
+                <Card.Meta>
+                  Location: 
+               </Card.Meta>
+                </Grid.Column>
+              <Grid.Column width={2}>
+                  
+                  Author: {post.author}
               </Grid.Column>
               <Grid.Column width={2}>
-             <Button onClick={() => this.handleDelete(post._id)}>
+              <Button onClick={() => this.handleDelete(post._id)}>
               Delete
-            </Button>
+              </Button>
 
               </Grid.Column>
             </Grid.Row>
@@ -76,16 +73,8 @@ export class Article extends React.Component {
         );
     }
 
-    styleCardHeader() {
-    let classes = "names";
-    classes += this.state.likes === 0 ? "warning" : "primary";
-    return classes;
-  }
 
-    styleLikes() {
-    const { likes } = this.state;
-    return likes === 0 ? "No items" : likes;
-  }
+
 
 }
 
@@ -93,3 +82,11 @@ export default ArticlesContainer = createContainer(() => {
     Meteor.subscribe('Articles');
     return { articles: Articles.find().fetch() }
 }, Article);
+
+
+
+
+
+
+
+
